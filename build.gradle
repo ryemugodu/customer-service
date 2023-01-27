@@ -3,6 +3,7 @@ plugins {
 	id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.springdoc.openapi-gradle-plugin' version '1.6.0'
+	id 'war'
 }
 
 group = 'com.ecart.customer'
@@ -36,6 +37,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	    
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+	implementation "org.openapitools:openapi-generator-gradle-plugin:6.2.1"
     
 	
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final' 
