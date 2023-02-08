@@ -1,0 +1,18 @@
+<appender name="customer-svc-splunk"
+	class="com.splunk.logging.HttpEventCollectorLogbackAppender">
+	<url>http://localhost:8000/</url>
+	<index>customer_svc_index</index>
+	<token>eyJraWQiOiJzcGx1bmsuc2VjcmV0IiwiYWxnIjoiSFM1MTIiLCJ2ZXIiOiJ2MiIsInR0eXAiOiJzdGF0aWMifQ.eyJpc3MiOiJhZG1pbiBmcm9tIGMwZDgyNjRmMzdkNCIsInN1YiI6ImFkbWluIiwiYXVkIjoiY3VzdG9tZXJfc3ZjIiwiaWRwIjoiU3BsdW5rIiwianRpIjoiNThlYmQ5ZjY0NzEyYjQwMzk1ZmQwZjU3OTU3ZTc2N2IzMTc4N2Y1NjEzNDA5YTg3OGVlYzYwNTZhY2M3MTYxYyIsImlhdCI6MTY3NTExODczNywiZXhwIjoxNjc3NzEwNzM3LCJuYnIiOjE2NzUxMTg3Mzd9.mSdxxGxHJc-BvVT_2vGOPOGL0xqKUsOfuXfy3U5t-1YvqCk8GSrE77muhCJqVXzt5LvxyLTcBMnY-DGmMHyWMQ</token>
+	<batch_size_count>10</batch_size_count>
+	<disableCertificateValidation>true</disableCertificateValidation>
+	<layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+		<jsonFormatter
+			class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter" />
+		<timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS Z</timestampFormat>
+		<appendLineSeparator>true</appendLineSeparator>
+	</layout>
+	<logger name="com.ecart.customer" level="info"
+		additivity="false">
+		<appender-ref ref="customer-svc-splunk"></appender-ref>
+	</logger>
+</appender>

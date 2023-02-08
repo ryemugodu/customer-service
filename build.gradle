@@ -3,7 +3,6 @@ plugins {
 	id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.springdoc.openapi-gradle-plugin' version '1.6.0'
-	id 'war'
 }
 
 group = 'com.ecart.customer'
@@ -14,10 +13,17 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+	
+	all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'ch.qos.logback', module: 'logback-classic'
+        exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+    }
 }
+apply plugin: 'java'
 
 repositories {
-	mavenCentral()
+	mavenCentral()	
 }
 
 dependencies {
@@ -38,7 +44,9 @@ dependencies {
 	    
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 	implementation "org.openapitools:openapi-generator-gradle-plugin:6.2.1"
-    
+	
+	//implementation 'com.splunk:splunk:1.4.0.0'	
+	//implementation 'com.splunk.logging:splunk-library-javalogging:1.9.0'
 	
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final' 
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
@@ -47,3 +55,4 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+

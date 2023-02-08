@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Customer Service API
+  description: API for customer CRUD operations
+  version: 1.0
+  contact: raghu
+  email: foo@gmail.com
+server:
+  contextPath: /customer-svc
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+  http2:
+    enabled: true
+paths:
+  /customer-svc/customer/{id}:
+    get:
+      operationId: get-customer
+      description: Returns the customer details for the given customer id.
+      parameters:
+        - name: id
+          description: customer id
+          in: path
+          schema: 
+            description: Customer id
+            example: 1234
+            type: string
+            pattern: ^[0-9]+$
+            minLength: 1
+            maxLength: 9999
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content: 
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/Customer'
+components:
+  schemas:
+    Customer:
+      description: Customer model
+      example: 
+        
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tagsSorter: alpha
+    use-root-path: true
+  cache:
+    disabled: true

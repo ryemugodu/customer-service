@@ -1,6 +1,6 @@
 package com.ecart.customer.request;
 
-import com.ecart.customer.repository.Customer;
+import com.ecart.customer.repository.CustomerEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class CustomerDTO {
 	private String email;
 	private String phone;
 	
-	public static CustomerDTO customerObejctToCustomerDTO(Customer p) {
+	public static CustomerDTO customerObejctToCustomerDTO(CustomerEntity p) {
 		CustomerDTO dto = CustomerDTO.builder().id(p.getId())
 				.firstName(p.getFirstName())
 				.lastName(p.getLastName())
@@ -30,8 +30,8 @@ public class CustomerDTO {
 		return dto;
 	}
 	
-	public static Customer customerDTOToCustomer(CustomerDTO p) {
-		Customer person = Customer.builder().id(p.getId())
+	public static CustomerEntity customerDTOToCustomer(CustomerDTO p) {
+		CustomerEntity person = CustomerEntity.builder().id(p.getId())
 				.firstName(p.getFirstName())
 				.lastName(p.getLastName())
 				.email(p.getEmail())
